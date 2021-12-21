@@ -6,12 +6,17 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+          uses: actions/checkout@v2.3.1
+          with:
+            persist-credentials: false
       - run: yarn build
-      - uses: actions/checkout@v2
+
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: foo-user/bar-repo
+          repository: apenkov/simpleTestForSimpleServer
           path: './test'
       - run: |
           cd ./test

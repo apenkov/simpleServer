@@ -18,4 +18,6 @@ jobs:
           docker build . --file Dockerfile -t back:latest
           docker build . --file ./tests/Dockerfile -t tests:latest
       - name: Tests
-        run: docker-compose up --exit-code-from tests
+        run: |
+          ls
+          docker-compose up --exit-code-from tests

@@ -6,6 +6,6 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "build": "node index.js"
+    "start": "node index.js"
   }
 }

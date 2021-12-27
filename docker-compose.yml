@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+  tests:
+    image: tests:latest
+    depends_on:
+      - back
+  back:
+    image: back:latest
+    ports:
+      - "3000:3000"
+
+
+
+
+

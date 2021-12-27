@@ -6,21 +6,16 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        name: 'setup node'
-        with:
-          node-version: '14.x'
-      - run: yarn build
-
-
-      - name: Checkout
+      - name: Checkout back
+        uses: actions/checkout@v2
+      - name: Checkout tests
         uses: actions/checkout@v2
         with:
           repository: apenkov/simpleTestForSimpleServer
-          path: './test'
-      - run: |
-          cd ./test
-          yarn test
-
-
+          path: './tests'
+      - name: build Docker images
+        run: |
+          docker build . --file Dockerfile -t back:latest
+          docker build . --file ./tests/Dockerfile -t tests:latest
+      - name: Tests
+        run: docker-compose up --exit-code-from tests

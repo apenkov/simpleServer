@@ -16,7 +16,7 @@ jobs:
       - name: build Docker images
         run: |
           docker build . --file Dockerfile -t back:latest
-          docker build . --file ./tests/Dockerfile -t tests:latest
+          docker build ./tests --file ./tests/Dockerfile -t tests:latest
       - name: Tests
         run: |
           ls

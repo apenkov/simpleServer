@@ -4,12 +4,7 @@ services:
     image: tests:latest
     depends_on:
       - back
+    network_mode: host
   back:
     image: back:latest
-    ports:
-      - "3000:3000"
-
-
-
-
-
+    network_mode: host

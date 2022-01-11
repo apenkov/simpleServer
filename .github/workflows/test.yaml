@@ -9,6 +9,8 @@ jobs:
       - name: Checkout back
         uses: actions/checkout@v2
       - name: Upload allure-results to Allure EE
+        uses: simple-elf/allurectl-action@master
+        id: allure-ee
         with:
           allure_results: allure-results
           allure_ee_endpoint: ${{ secrets.ALLURE_EE_ENDPOINT }}

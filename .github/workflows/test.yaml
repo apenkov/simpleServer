@@ -8,16 +8,9 @@ jobs:
     steps:
       - name: Checkout back
         uses: actions/checkout@v2
-      - name: Checkout tests
-        uses: actions/checkout@master
+      - name: Upload allure-results to Allure EE
         with:
-          repository: apenkov/simpleTestForSimpleServer
-          path: './tests'
-      - name: build Docker images
-        run: |
-          docker build . --file Dockerfile -t back:latest
-          docker build ./tests --file ./tests/Dockerfile -t tests:latest
-      - name: Tests
-        run: |
-          ls
-          docker-compose up --exit-code-from tests
+          allure_results: allure-results
+          allure_ee_endpoint: ${{ secrets.ALLURE_EE_ENDPOINT }}
+          allure_ee_token: ${{ secrets.ALLURE_EE_TOKEN }}
+          project_id: ${{ secrets.ALLURE_EE_PROJECT_ID }}
